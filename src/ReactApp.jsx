@@ -6,6 +6,9 @@ import { useState } from "react"
   const [curr,change] = useState("");
   const [alpha,count] = useState(0);
   const [word,tote] = useState(0);
+  const [isDarkMode,setIsDarkMode] = useState(false);
+
+ 
 
 
   function trans (ele) {
@@ -20,22 +23,31 @@ import { useState } from "react"
   const upper = () => {
       change(curr.toUpperCase())
   }
-  const lower = () => {
+  const lower = () => {                          
       change(curr.toLowerCase())
   }
 
+  function toggleDarkMode(){
+    setIsDarkMode(!isDarkMode);
+}
+
+
+const backgroundColor = isDarkMode ?'#222':'#fff';
+const color = isDarkMode?'#fff':'#222';
+
 
   return (
-    <div>
+    <div style={{backgroundColor,color}} id="shoib">
 <input type="text" id="area" onChange={trans} value={curr}  /><br/>
 <div id="flex">
-<button onClick={upper}>To Uppercase</button>
-<button onClick={lower}>To Lowercase</button>
-
+<button onClick={upper}>To<br></br>Uppercase</button>
+<button onClick={lower}>To<br></br>Lowercase</button>
+</div>
 <p>Total letters {alpha}</p>
 <p>Total Words {word}</p>
 
-</div>
+   <button onClick={toggleDarkMode}>
+    {isDarkMode? 'Light mode':'Dark mode'}</button>
     </div>
   )
 }
